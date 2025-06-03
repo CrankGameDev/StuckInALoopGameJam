@@ -1,14 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://oaieqr0t3vh5"]
+[gd_scene load_steps=7 format=3 uid="uid://oaieqr0t3vh5"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_3mj1e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rtsa7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1qsaa"]
+
+[sub_resource type="Gradient" id="Gradient_8wd4l"]
+offsets = PackedFloat32Array(0, 0.27, 0.3, 0.33, 0.6, 0.7, 0.71)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0.501961, 1, 0.184314, 0.184314, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gljdo"]
+gradient = SubResource("Gradient_8wd4l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od5rt"]
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ukuw"]
 radius = 60.0
@@ -17,10 +27,23 @@ radius = 60.0
 script = ExtResource("1_3mj1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rtsa7")
+shape = SubResource("CircleShape2D_1qsaa")
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gljdo")
+
+[node name="PlanetPanel" type="Panel" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

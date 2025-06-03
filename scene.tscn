@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=8 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
@@ -7,8 +7,16 @@
 [sub_resource type="Gradient" id="Gradient_rbhqo"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_voio7"]
-size = Vector2(8, 16)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
+bg_color = Color(1, 0.352751, 0.165173, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwns1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytg76"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4y4tq")
@@ -18,23 +26,33 @@ width = 1.0
 gradient = SubResource("Gradient_rbhqo")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("1_l6ocb")]
-position = Vector2(104, 91)
+position = Vector2(254, 226)
+size = 25.0
+pull = 1.75
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(574, 506)
+size = 15.0
+pull = 1.75
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(744, 370)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(104, 45)
+position = Vector2(153, 225)
 script = ExtResource("2_ywwuq")
 
 [node name="Panel" type="Panel" parent="CharacterBody2D"]
-visible = false
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
-offset_bottom = 8.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_voio7")
+shape = SubResource("CircleShape2D_vwns1")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-shape = SubResource("RectangleShape2D_voio7")
+shape = SubResource("CircleShape2D_ytg76")
