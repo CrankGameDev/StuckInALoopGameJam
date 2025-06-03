@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg4f1c0nabtl5"]
+
+[ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
+[ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="2_ywwuq"]
+
+[sub_resource type="Gradient" id="Gradient_rbhqo"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voio7"]
+size = Vector2(8, 16)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4y4tq")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+gradient = SubResource("Gradient_rbhqo")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(104, 91)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(104, 45)
+script = ExtResource("2_ywwuq")
+
+[node name="Panel" type="Panel" parent="CharacterBody2D"]
+visible = false
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_voio7")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("RectangleShape2D_voio7")

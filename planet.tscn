@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://oaieqr0t3vh5"]
+
+[ext_resource type="Script" path="res://planet.gd" id="1_3mj1e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rtsa7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od5rt"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ukuw"]
+radius = 60.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_3mj1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rtsa7")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_od5rt")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5ukuw")
