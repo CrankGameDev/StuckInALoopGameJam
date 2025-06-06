@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qsaa"]
 
 [sub_resource type="Gradient" id="Gradient_8wd4l"]
-offsets = PackedFloat32Array(0, 0.27, 0.3, 0.33, 0.6, 0.7, 0.71)
+offsets = PackedFloat32Array(0, 0.27, 0.3, 0.33, 0.6, 0.7, 0.701)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0.501961, 1, 0.184314, 0.184314, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gljdo"]
