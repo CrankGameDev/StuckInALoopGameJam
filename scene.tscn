@@ -46,7 +46,7 @@ pull = 1.75
 position = Vector2(744, 370)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(153, 225)
+position = Vector2(153, 226)
 script = ExtResource("2_ywwuq")
 
 [node name="Panel" type="Panel" parent="CharacterBody2D"]
@@ -63,6 +63,16 @@ shape = SubResource("CircleShape2D_vwns1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CircleShape2D_ytg76")
+
+[node name="LineVelocity" type="Line2D" parent="CharacterBody2D"]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="LineThrust" type="Line2D" parent="CharacterBody2D"]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(1, 1, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -11,7 +11,7 @@ var DEBUG : float = 0
 
 func _ready() -> void:
 	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
-	velocity.y = 135
+	velocity.y = 100
 
 
 func _physics_process(delta: float) -> void:
@@ -36,8 +36,8 @@ func _physics_process(delta: float) -> void:
 			#print(b-a[i].get_parent().size)
 			var c = global_position.direction_to(planetPos)
 			#print(c)
-			var d = size + (gravity*pull*size*5)
-			print(d-b)
+			var d = size + (gravity*size*5)
+			#print(d-b)
 			var e = d-(b/pull)
 			DEBUG = e
 			if e < 0:
@@ -48,8 +48,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 
-	if closestPlanet != null:
-		rotation = global_position.angle_to_point(global_position.direction_to(closestPlanet.global_position))
+	#if closestPlanet != null:
+		#rotation = global_position.angle_to_point(global_position.direction_to(closestPlanet.global_position))
 	#print(rotation)
 
 	# Handle jump.
