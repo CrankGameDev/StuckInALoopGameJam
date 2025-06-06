@@ -1,8 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=9 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="2_ywwuq"]
+
+[sub_resource type="Curve" id="Curve_n3dqp"]
+min_value = 0.5
+max_value = 1.5
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_rbhqo"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -20,6 +26,7 @@ corner_radius_bottom_left = 1024
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4y4tq")
+curve = SubResource("Curve_n3dqp")
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 1.0
@@ -56,3 +63,9 @@ shape = SubResource("CircleShape2D_vwns1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CircleShape2D_ytg76")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_right = 40.0
+offset_bottom = 23.0
