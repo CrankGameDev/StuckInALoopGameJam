@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=12 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="2_ywwuq"]
+[ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="4_w8gs4"]
 
 [sub_resource type="Curve" id="Curve_n3dqp"]
 min_value = 0.5
@@ -23,6 +24,27 @@ corner_radius_bottom_left = 1024
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwns1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytg76"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2m2h"]
+shader = ExtResource("4_w8gs4")
+shader_parameter/vertical_alignment = true
+shader_parameter/arrow_width = 8.0
+shader_parameter/arrow_ratio = 1.0
+shader_parameter/arrow_speed = 2.0
+shader_parameter/arrow_spacing = 0.25
+shader_parameter/value = 0.5
+shader_parameter/wave_width = 3.0
+shader_parameter/wave_speed_factor = 6.0
+shader_parameter/wave_edge_offset = 0.025
+shader_parameter/wave_factor = 0.013
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v40hl"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4y4tq")
@@ -73,6 +95,31 @@ default_color = Color(0, 1, 0, 1)
 points = PackedVector2Array(0, 0, 30, 0)
 width = 5.0
 default_color = Color(1, 1, 0, 1)
+
+[node name="UIComponents" type="Node2D" parent="CharacterBody2D"]
+top_level = true
+position = Vector2(153, 226)
+
+[node name="Panel" type="Panel" parent="CharacterBody2D/UIComponents"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_i2m2h")
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = -16.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v40hl")
+
+[node name="RemotePosition" type="RemoteTransform2D" parent="CharacterBody2D"]
+remote_path = NodePath("../UIComponents")
+update_rotation = false
+update_scale = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
