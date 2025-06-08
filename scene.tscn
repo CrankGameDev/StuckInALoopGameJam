@@ -28,23 +28,21 @@ corner_radius_bottom_left = 1024
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2m2h"]
 shader = ExtResource("4_w8gs4")
 shader_parameter/vertical_alignment = true
-shader_parameter/arrow_width = 8.0
-shader_parameter/arrow_ratio = 1.0
+shader_parameter/arrow_width = 12.0
+shader_parameter/arrow_ratio = 0.5
 shader_parameter/arrow_speed = 2.0
-shader_parameter/arrow_spacing = 0.25
-shader_parameter/value = 0.5
-shader_parameter/wave_width = 3.0
-shader_parameter/wave_speed_factor = 6.0
-shader_parameter/wave_edge_offset = 0.025
+shader_parameter/arrow_spacing = -0.05
+shader_parameter/value = 0.636
+shader_parameter/wave_width = 1.0
+shader_parameter/wave_speed_factor = 12.0
+shader_parameter/wave_edge_offset = 0.015
 shader_parameter/wave_factor = 0.013
+shader_parameter/wave_burn_effect = 0.25
+shader_parameter/meter_shape = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v40hl"]
 bg_color = Color(1, 1, 1, 1)
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4y4tq")
@@ -101,7 +99,7 @@ top_level = true
 position = Vector2(153, 226)
 
 [node name="Panel" type="Panel" parent="CharacterBody2D/UIComponents"]
-texture_filter = 2
+texture_filter = 1
 material = SubResource("ShaderMaterial_i2m2h")
 anchors_preset = 6
 anchor_left = 1.0
