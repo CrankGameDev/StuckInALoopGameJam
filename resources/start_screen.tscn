@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://hu16por2uapg"]
+
+[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_2pxaq"]
+[ext_resource type="Script" path="res://resources/main_menu.gd" id="1_yji6k"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_jtdsg"]
+[ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="4_sw8fg"]
+
+[sub_resource type="Theme" id="Theme_w44k5"]
+Label/colors/font_color = Color(0, 0.422336, 0.422517, 1)
+Label/colors/font_outline_color = Color(0.658824, 0.796078, 0.839216, 1)
+Label/colors/font_shadow_color = Color(0.0196078, 0.407843, 0.662745, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 2
+Label/constants/shadow_offset_x = 2
+Label/font_sizes/font_size = 50
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.01054, 1.0205)
+script = ExtResource("1_yji6k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00171, 1)
+color = Color(0.0035565, 4.06103e-08, 0.0706538, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.982934, 1.49098)
+theme = ExtResource("1_2pxaq")
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jtdsg")
+text = " Start "
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jtdsg")
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -338.503
+offset_top = 48.9956
+offset_right = 341.497
+offset_bottom = 139.996
+grow_horizontal = 2
+theme = SubResource("Theme_w44k5")
+theme_override_colors/font_color = Color(0.658824, 0.796078, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_sw8fg")
+text = "Stuck in a Loop! "
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

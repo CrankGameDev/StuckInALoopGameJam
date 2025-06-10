@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwywx3serb5i0"]
+
+[ext_resource type="StyleBox" uid="uid://y5btjnbdk3fw" path="res://style_box_default.tres" id="1_u8uk0"]
+[ext_resource type="StyleBox" uid="uid://cfbh77eu002lt" path="res://pressed.tres" id="2_75t5a"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_220po"]
+color = Color(1.63645e-06, 0, 0.569404, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdwvu"]
+bg_color = Color(0.00784314, 0.0666667, 0.247059, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.0196078, 0.407843, 0.662745, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 12
+
+[resource]
+Button/colors/font_color = Color(0.423529, 0.662745, 0.745098, 1)
+Button/colors/font_focus_color = Color(0.899173, 0.97587, 0.898149, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.00784314, 0.0666667, 0.247059, 1)
+Button/colors/icon_focus_color = Color(0.223675, 0.0673637, 0.0693604, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/font_sizes/font_size = 40
+Button/icons/icon = null
+Button/styles/disabled = SubResource("StyleBoxLine_220po")
+Button/styles/hover = SubResource("StyleBoxFlat_jdwvu")
+Button/styles/hover_pressed = null
+Button/styles/normal = ExtResource("1_u8uk0")
+Button/styles/pressed = ExtResource("2_75t5a")
