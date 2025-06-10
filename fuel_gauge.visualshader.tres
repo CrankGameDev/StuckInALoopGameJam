@@ -14,7 +14,7 @@ linked_parent_graph_frame = 96
 function = 31
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_eytlw"]
-size = Vector2(581, 555)
+size = Vector2(504, 318)
 title = "Progress Bar Parameters"
 attached_nodes = PackedInt32Array(10, 67, 127)
 
@@ -115,7 +115,7 @@ linked_parent_graph_frame = 37
 op_type = 0
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_230pt"]
-size = Vector2(1251, 581)
+size = Vector2(1244, 560)
 title = "Gauge Shape"
 attached_nodes = PackedInt32Array(121, 126, 144, 146, 145, 147)
 
@@ -170,7 +170,7 @@ linked_parent_graph_frame = 143
 linked_parent_graph_frame = 143
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_kvmgi"]
-size = Vector2(784, 803)
+size = Vector2(784, 638)
 title = "Arrow Color"
 attached_nodes = PackedInt32Array(136, 137, 113, 141, 142, 139, 140)
 
@@ -181,13 +181,13 @@ port_type = 3
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_e2hoy"]
 linked_parent_graph_frame = 130
-size = Vector2(251, 221)
+size = Vector2(244, 118)
 title = "Gauge Mask"
 attached_nodes = PackedInt32Array(129)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_881iq"]
 linked_parent_graph_frame = 130
-size = Vector2(244, 252)
+size = Vector2(244, 118)
 title = "Gauge Gradient"
 attached_nodes = PackedInt32Array(128)
 
@@ -198,7 +198,7 @@ linked_parent_graph_frame = 130
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_dpx3o"]
 linked_parent_graph_frame = 98
-size = Vector2(244, 252)
+size = Vector2(244, 118)
 title = "Fluid Mask"
 attached_nodes = PackedInt32Array(77)
 
@@ -208,7 +208,7 @@ op_type = 0
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_6l2x6"]
 linked_parent_graph_frame = 98
-size = Vector2(244, 252)
+size = Vector2(244, 118)
 title = "Fluid Gradient"
 attached_nodes = PackedInt32Array(111)
 
@@ -224,7 +224,7 @@ linked_parent_graph_frame = 153
 parameter_name = "arrow_visibility"
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_7j6uv"]
-size = Vector2(984, 401)
+size = Vector2(984, 358)
 title = "Overlay Arrow"
 attached_nodes = PackedInt32Array(114, 115, 152, 154, 155, 157, 156)
 
@@ -262,12 +262,12 @@ linked_parent_graph_frame = 164
 constant = 0.5
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_dcqf7"]
-size = Vector2(944, 301)
+size = Vector2(944, 198)
 title = "Opacity"
 attached_nodes = PackedInt32Array(160, 158, 161, 159)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_5c14t"]
-size = Vector2(1604, 601)
+size = Vector2(1604, 498)
 title = "Fluid Color"
 attached_nodes = PackedInt32Array(110, 112, 104, 132, 133, 134, 131, 162, 119)
 
@@ -301,7 +301,7 @@ expression = "result = fract(
 / width); "
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_cr4xy"]
-size = Vector2(1194, 501)
+size = Vector2(1184, 438)
 title = "Get Arrow UV"
 attached_nodes = PackedInt32Array(66, 13, 9, 14, 15, 12, 53, 52, 135)
 
@@ -319,7 +319,7 @@ parameter_name = "arrow_speed"
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_lof85"]
 linked_parent_graph_frame = 45
-size = Vector2(564, 259)
+size = Vector2(564, 218)
 title = "Time scaled offset"
 attached_nodes = PackedInt32Array(38, 40, 39)
 
@@ -332,12 +332,12 @@ linked_parent_graph_frame = 45
 parameter_name = "arrow_ratio"
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_5t2tc"]
-size = Vector2(861, 529)
+size = Vector2(784, 358)
 title = "Arrow Parameters"
 attached_nodes = PackedInt32Array(17, 19, 18, 56, 151)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_nqyph"]
-size = Vector2(1300, 579)
+size = Vector2(1300, 538)
 title = "Arrow SDF"
 attached_nodes = PackedInt32Array(42, 33, 43, 41)
 
@@ -504,22 +504,22 @@ linked_parent_graph_frame = 98
 parameter_name = "wave_edge_offset"
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_v1hn6"]
-size = Vector2(841, 529)
+size = Vector2(764, 358)
 title = "Wave Parameters"
 attached_nodes = PackedInt32Array(85, 86, 87, 90, 117)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_vi2b6"]
-size = Vector2(1104, 501)
+size = Vector2(1104, 438)
 title = "Vertical Aligned UV"
 attached_nodes = PackedInt32Array(63, 64, 74, 65, 62, 75, 99, 100)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_3y4jl"]
-size = Vector2(1184, 401)
+size = Vector2(1184, 358)
 title = "Wave Offset"
 attached_nodes = PackedInt32Array(93, 91, 73, 70, 76, 80, 79, 92, 71)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_m0nkl"]
-size = Vector2(1284, 612)
+size = Vector2(1284, 478)
 title = "Fluid Level"
 attached_nodes = PackedInt32Array(78, 94, 118, 72, 81, 69, 149, 116, 150)
 
@@ -998,7 +998,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1868.12, -524.135)
 mode = 1
 flags/skip_vertex_transform = true
 flags/light_only = false
