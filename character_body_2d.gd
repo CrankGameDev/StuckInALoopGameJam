@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 30.0
 const JUMP_VELOCITY = -20.0
 var closestPlanet : Node
@@ -8,6 +7,9 @@ var x_vel : float = 0
 var y_vel : float = 0
 
 var DEBUG : float = 0
+
+@onready var fuel_component: FuelComponent = $FuelComponent
+
 
 func _ready() -> void:
 	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
@@ -27,7 +29,7 @@ func _physics_process(delta: float) -> void:
 			var size = a[i].get_parent().size
 			var gravity = a[i].get_parent().gravity
 			var planetPos = a[i].global_position
-			
+
 			var b = global_position.distance_to(planetPos)
 			if b < closeDist:
 				closeDist = b
@@ -65,34 +67,35 @@ func _physics_process(delta: float) -> void:
 		x_vel = direction_x * SPEED
 	else:
 		x_vel = 0
-	
+
 	var direction_y := Input.get_axis("ui_up", "ui_down")
 	if direction_y:
 		y_vel = direction_y * SPEED
 	else:
 		y_vel = 0
-	
+
 	#var mouse = get_viewport().get_mouse_position()
 	#var size:Vector2 = DisplayServer.screen_get_size()/2
 	#var point = global_position.direction_to(mouse)
 	#print(get_local_mouse_position())
-	
+
 	var point = get_local_mouse_position().normalized()
-	
+
 	#print(point)
 	if Input.is_action_pressed("click"):
 		velocity += 50*point*delta
+		fuel_component.amount -= delta * 5.0
 		$LineThrust.points[1] = -point*20
 	else:
 		$LineThrust.points[1] = Vector2.ZERO
-	
+
 	$LineVelocity.points[1] = velocity
 	#$LineThrust.points[1] = point*20
-	
+
 	#velocity.x += x_vel
 	velocity += Vector2(x_vel,y_vel)
 
 	move_and_slide()
-	
+
 	#velocity.x -= x_vel
 	velocity -= Vector2(x_vel,y_vel)
