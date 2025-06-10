@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	var point = get_local_mouse_position().normalized()
 
 	#print(point)
-	if Input.is_action_pressed("click"):
+	if Input.is_action_pressed("click") and fuel_component.amount > 0:
 		velocity += 50*point*delta
 		fuel_component.amount -= delta * 5.0
 		$LineThrust.points[1] = -point*20
