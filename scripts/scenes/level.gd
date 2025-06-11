@@ -65,3 +65,10 @@ func _process(delta: float) -> void:
 		"mins": minutes_left,
 		"secs": "%02d" % seconds_left,
 	})
+
+
+func get_next_level() -> PackedScene:
+	var next_level_path: String = LevelManager.get_next_level_path(self)
+	if not next_level_path:
+		return null
+	return ResourceLoader.load(next_level_path, "PackedScene")
