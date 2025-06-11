@@ -39,14 +39,14 @@ func _ready() -> void:
 	add_child(_level_timer, false, Node.INTERNAL_MODE_FRONT)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	line.add_point(player.global_position)
 	while line.get_point_count() > 1000:
 		line.remove_point(0)
 	camera.get_node(^"Label").text = "%1.3f" % player.DEBUG
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera.global_position = player.global_position
 	var zoomed = player.velocity.length()
 	zoomed = remap(zoomed,150,30,0.5,1.5)
