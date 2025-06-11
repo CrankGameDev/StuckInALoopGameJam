@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwkvl3jd8jys6"]
+
+[ext_resource type="Script" path="res://scripts/scenes/level.gd" id="1_v5pm0"]
+[ext_resource type="PackedScene" uid="uid://cxt3pjjx47hr7" path="res://scenes/player.tscn" id="2_20c08"]
+
+[sub_resource type="Curve" id="Curve_qk4wr"]
+min_value = 0.5
+max_value = 1.5
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ychdu"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[node name="Level" type="Node"]
+script = ExtResource("1_v5pm0")
+curve = SubResource("Curve_qk4wr")
+
+[node name="Player" parent="." instance=ExtResource("2_20c08")]
+unique_name_in_owner = true
+
+[node name="Line" type="Line2D" parent="Player"]
+unique_name_in_owner = true
+top_level = true
+width = 1.0
+gradient = SubResource("Gradient_ychdu")
+
+[node name="Camera" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
+top_level = true
+
+[node name="Label" type="Label" parent="Player/Camera"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true

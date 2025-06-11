@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://tq2gdvqcc4ux"]
+
+[ext_resource type="PackedScene" uid="uid://dwkvl3jd8jys6" path="res://scenes/base_level.tscn" id="1_kmtod"]
+[ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="2_ng8dm"]
+
+[node name="DemoLevel" instance=ExtResource("1_kmtod")]
+
+[node name="Planet1" parent="." index="1" instance=ExtResource("2_ng8dm")]
+position = Vector2(254, 226)
+size = 25.0
+pull = 1.75
+
+[node name="Planet2" parent="." index="2" instance=ExtResource("2_ng8dm")]
+position = Vector2(574, 506)
+size = 15.0
+pull = 1.75
+
+[node name="Planet3" parent="." index="3" instance=ExtResource("2_ng8dm")]
+position = Vector2(744, 370)

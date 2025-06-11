@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxt3pjjx47hr7"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_46qjo"]
+[ext_resource type="Script" path="res://fuel_component.gd" id="2_x1c4a"]
+[ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="3_71dae"]
+[ext_resource type="Script" path="res://fuel_gauge.gd" id="4_2l8r8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
+bg_color = Color(1, 0.352751, 0.165173, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwns1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytg76"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2m2h"]
+resource_local_to_scene = true
+shader = ExtResource("3_71dae")
+shader_parameter/vertical_alignment = true
+shader_parameter/arrow_width = 12.0
+shader_parameter/arrow_ratio = 0.5
+shader_parameter/arrow_speed = 2.0
+shader_parameter/arrow_spacing = -0.05
+shader_parameter/value = 1.0
+shader_parameter/wave_width = 1.0
+shader_parameter/wave_speed_factor = 12.0
+shader_parameter/wave_edge_offset = 0.015
+shader_parameter/wave_factor = 0.013
+shader_parameter/wave_burn_effect = 0.0
+shader_parameter/meter_shape = 5.0
+shader_parameter/arrow_visibility = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v40hl"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_46qjo")
+
+[node name="FuelComponent" type="Node" parent="."]
+script = ExtResource("2_x1c4a")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vwns1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ytg76")
+
+[node name="LineVelocity" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="LineThrust" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="UIComponents" type="Node2D" parent="."]
+top_level = true
+
+[node name="FuelGauge" type="Panel" parent="UIComponents" node_paths=PackedStringArray("fuel_component")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_i2m2h")
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = -16.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v40hl")
+script = ExtResource("4_2l8r8")
+fuel_component = NodePath("../../FuelComponent")
+
+[node name="RemotePosition" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../UIComponents")
+update_rotation = false
+update_scale = false
