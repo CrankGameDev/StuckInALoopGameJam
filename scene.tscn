@@ -112,6 +112,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
 shape = SubResource("CircleShape2D_vwns1")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CircleShape2D_ytg76")

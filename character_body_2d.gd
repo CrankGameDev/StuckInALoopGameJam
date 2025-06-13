@@ -6,6 +6,8 @@ var closestPlanet : Node
 var x_vel : float = 0
 var y_vel : float = 0
 
+var simLength : float = 0
+
 var DEBUG : float = 0
 
 @onready var fuel_component: FuelComponent = $FuelComponent
@@ -23,28 +25,31 @@ func _physics_process(delta: float) -> void:
 		#print($Area2D.get_overlapping_areas())
 		var a = $Area2D.get_overlapping_areas()
 		var closeDist: float = 99999
+		#simulate_gravity(a)
 		for i in a.size():
 			#print(a[i])
-			var pull = a[i].get_parent().pull
-			var size = a[i].get_parent().size
-			var gravity = a[i].get_parent().gravity
-			var planetPos = a[i].global_position
-
-			var b = global_position.distance_to(planetPos)
-			if b < closeDist:
-				closeDist = b
-				closestPlanet = a[i].get_parent()
-			#print(b)
-			#print(b-a[i].get_parent().size)
-			var c = global_position.direction_to(planetPos)
-			#print(c)
-			var d = size + (gravity*pull*200)
-			#print(d-b)
-			var e = (d-b)/pull
-			DEBUG = e
-			if e < 0:
-				e = 0.1
-			velocity += c*Vector2(e,e) * delta
+			var result = simulate_gravity(a[i],global_position)
+			velocity += result*delta
+			#var pull = a[i].get_parent().pull
+			#var size = a[i].get_parent().size
+			#var gravity = a[i].get_parent().gravity
+			#var planetPos = a[i].global_position
+#
+			#var b = global_position.distance_to(planetPos)
+			#if b < closeDist:
+				#closeDist = b
+				#closestPlanet = a[i].get_parent()
+			##print(b)
+			##print(b-a[i].get_parent().size)
+			#var c = global_position.direction_to(planetPos)
+			##print(c)
+			#var d = size + (gravity*pull*200)
+			##print(d-b)
+			#var e = (d-b)/pull
+			#DEBUG = e
+			#if e < 0:
+				#e = 0.1
+			#velocity += c*Vector2(e,e) * delta
 			#print(c*Vector2(b-a[i].get_parent().size,b-a[i].get_parent().size))
 			#print(c*Vector2(d-a[i].get_parent().size,d-a[i].get_parent().size))
 	else:
@@ -99,3 +104,67 @@ func _physics_process(delta: float) -> void:
 
 	#velocity.x -= x_vel
 	velocity -= Vector2(x_vel,y_vel)
+	
+	$Line2D2.clear_points()
+	$Line2D2.add_point(Vector2.ZERO)
+	simLength = 0
+	
+	var space_rid = get_world_2d().space
+	var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
+	
+	var query = PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.set_collision_mask(1)
+	
+	query.position = position + (velocity*delta)
+	#print(position)
+	#print(query.position)
+	var result = space_state.intersect_point(query)
+	#print(result)
+	var simuVol = velocity
+	var o = 200
+	while simLength < 500:
+		var offset = Vector2.ZERO
+		for i in result.size():
+			var test = simulate_gravity(result[i]["collider"],query.position)
+			#print(query.position)
+			#velocity += test*delta
+			offset += test
+			#print(query.position)
+			#print(test*delta)
+			#print(position)
+			#print(query.position)
+		#print(query.position)
+		simuVol += offset*delta
+		query.position += simuVol*delta
+		#print(query.position)
+		#print("--")
+		#print(query.position)
+		#print(position)
+		result = space_state.intersect_point(query)
+		#print(result)
+		$Line2D2.add_point(query.position-position)
+		simLength += $Line2D2.get_point_position($Line2D2.get_point_count()-1).distance_to($Line2D2.get_point_position($Line2D2.get_point_count()-2))
+		
+		o-=1
+
+
+func simulate_gravity(input,pointPos):
+	var pull = input.get_parent().pull
+	var size = input.get_parent().size
+	var gravity = input.get_parent().gravity
+	var planetPos = input.global_position
+
+	var dist = pointPos.distance_to(planetPos)
+	#print(b)
+	#print(b-a[i].get_parent().size)
+	var direct = pointPos.direction_to(planetPos)
+	#print(c)
+	var pullCalc = size + (gravity*pull*200)
+	#print(d-b)
+	var final = (pullCalc-dist)/pull
+	DEBUG = final
+	if final < 0:
+		final = 0.1
+	return direct*Vector2(final,final)
