@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=16 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
+[ext_resource type="Texture2D" uid="uid://d2cvl8o4joi4" path="res://Starfield.png" id="2_01sbq"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="2_ywwuq"]
 [ext_resource type="Script" path="res://fuel_component.gd" id="4_rb1nm"]
 [ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="4_w8gs4"]
@@ -15,6 +16,9 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_rbhqo"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_c22ds"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
 bg_color = Color(1, 0.352751, 0.165173, 1)
@@ -52,6 +56,18 @@ border_color = Color(1, 1, 1, 1)
 script = ExtResource("1_4y4tq")
 curve = SubResource("Curve_n3dqp")
 
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 768)
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D"]
+offset_left = -1024.0
+offset_top = -768.0
+offset_right = 2048.0
+offset_bottom = 1536.0
+texture = ExtResource("2_01sbq")
+stretch_mode = 1
+
 [node name="Line2D" type="Line2D" parent="."]
 width = 1.0
 gradient = SubResource("Gradient_rbhqo")
@@ -65,6 +81,11 @@ position = Vector2(591, 785)
 size = 15.0
 pull = 2.0
 
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(937, 985)
+size = 15.0
+pull = 2.0
+
 [node name="StaticBody2D3" parent="." instance=ExtResource("1_l6ocb")]
 position = Vector2(1457, 382)
 pull = 0.5
@@ -72,6 +93,10 @@ pull = 0.5
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(158, 226)
 script = ExtResource("2_ywwuq")
+
+[node name="Line2D2" type="Line2D" parent="CharacterBody2D"]
+default_color = Color(1, 0, 1, 1)
+gradient = SubResource("Gradient_c22ds")
 
 [node name="FuelComponent" type="Node" parent="CharacterBody2D"]
 script = ExtResource("4_rb1nm")
