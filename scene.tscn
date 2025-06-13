@@ -59,18 +59,18 @@ gradient = SubResource("Gradient_rbhqo")
 [node name="StaticBody2D" parent="." instance=ExtResource("1_l6ocb")]
 position = Vector2(254, 226)
 size = 25.0
-pull = 1.75
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("1_l6ocb")]
-position = Vector2(574, 506)
+position = Vector2(591, 785)
 size = 15.0
-pull = 1.75
+pull = 2.0
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("1_l6ocb")]
-position = Vector2(744, 370)
+position = Vector2(1457, 382)
+pull = 0.5
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(153, 226)
+position = Vector2(158, 226)
 script = ExtResource("2_ywwuq")
 
 [node name="FuelComponent" type="Node" parent="CharacterBody2D"]
@@ -103,7 +103,7 @@ default_color = Color(1, 1, 0, 1)
 
 [node name="UIComponents" type="Node2D" parent="CharacterBody2D"]
 top_level = true
-position = Vector2(153, 226)
+position = Vector2(158, 226)
 
 [node name="FuelGauge" type="Panel" parent="CharacterBody2D/UIComponents" node_paths=PackedStringArray("fuel_component")]
 texture_filter = 1
