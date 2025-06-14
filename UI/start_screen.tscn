@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://hu16por2uapg"]
+[gd_scene load_steps=7 format=3 uid="uid://hu16por2uapg"]
 
 [ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_2pxaq"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_yji6k"]
 [ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_jtdsg"]
+[ext_resource type="Texture2D" uid="uid://dmqre5fjfjvpu" path="res://resources/space backgrounds/STUCKINLOOP2_back6.png" id="2_xtq2u"]
 [ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="4_sw8fg"]
 
 [sub_resource type="Theme" id="Theme_w44k5"]
@@ -35,6 +36,15 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00171, 1)
 color = Color(0.0035565, 4.06103e-08, 0.0706538, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xtq2u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
