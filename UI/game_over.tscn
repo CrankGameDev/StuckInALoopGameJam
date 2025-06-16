@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/game_over.gd" id="1_0krxp"]
 [ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_7toej"]
 [ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_7w6pr"]
-[ext_resource type="Texture2D" uid="uid://dbm2h6qn84rfp" path="res://resources/space backgrounds/STUCKINLOOP2_top3.png" id="2_dop2y"]
+[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_jgph0"]
 [ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="3_ujtfe"]
 
 [sub_resource type="Theme" id="Theme_i3yda"]
@@ -41,7 +41,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_dop2y")
+texture = ExtResource("2_jgph0")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
