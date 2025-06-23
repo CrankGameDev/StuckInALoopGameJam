@@ -30,3 +30,13 @@ func _process(delta: float) -> void:
 	
 	#zoomed = maxf(zoomed,1)
 	$Camera2D.zoom = Vector2(zoomed,zoomed)
+	
+	if Global.pause:
+		$Camera2D/Panel.visible = true
+	else:
+		$Camera2D/Panel.visible = false
+		$Camera2D/Panel.scale = Vector2(1,1)/$Camera2D.zoom
+
+
+func _on_button_pressed() -> void:
+	Global.pause = false

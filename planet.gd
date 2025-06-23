@@ -10,7 +10,7 @@ func _ready() -> void:
 	$CollisionShape2D.shape.radius = size
 	#$Panel.size = Vector2(size,size)
 	$Area2D/CollisionShape2D.shape = $Area2D/CollisionShape2D.shape.duplicate()
-	$Area2D/CollisionShape2D.shape.radius = size + (pull*size*5)
+	$Area2D/CollisionShape2D.shape.radius = size + (pull*200)
 	
 	print($Area2D/CollisionShape2D.shape.radius)
 	var diff:float = ($Area2D/CollisionShape2D.shape.radius-size)/$Area2D/CollisionShape2D.shape.radius
@@ -21,6 +21,7 @@ func _ready() -> void:
 	$TextureRect.texture = $TextureRect.texture.duplicate()
 	$TextureRect.texture.width =$Area2D/CollisionShape2D.shape.radius*2
 	$TextureRect.texture.height =$Area2D/CollisionShape2D.shape.radius*2
+	
 	var grad = Gradient.new()
 	grad.remove_point(1)
 	grad.add_point(0,Color(1,0,0,1))
@@ -34,6 +35,7 @@ func _ready() -> void:
 	grad.add_point(0.701,Color(1,0.18,0.18,0))
 	#print(grad.get_point_count())
 	$TextureRect.texture.gradient = grad
+	
 	#$TextureRect.position = Vector2($Area2D/CollisionShape2D.shape.radius,$Area2D/CollisionShape2D.shape.radius)
 	$PlanetPanel.size = Vector2(size*2,size*2)
 	$PlanetPanel.position = Vector2(-size,-size)
