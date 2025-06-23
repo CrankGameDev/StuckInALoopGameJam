@@ -88,7 +88,11 @@ func _check_player_gravity_influence() -> void:
 		if area.owner is Planet:
 			overlapping_planets.append(area.owner)
 	if overlapping_planets.is_empty():
+		# TODO: Temporary level success handler.
 		print("Freedom!")
+		var next_level: PackedScene = get_next_level()
+		if next_level:
+			get_tree().change_scene_to_packed.call_deferred(next_level)
 
 
 func _on_timeout() -> void:
