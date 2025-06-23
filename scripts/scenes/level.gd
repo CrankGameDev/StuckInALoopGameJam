@@ -5,9 +5,13 @@ extends Node
 ## A signal emitted when the time limit of this level is elapsed.
 signal timeout
 
+const Planet: Script = preload("res://planet.gd")
+
 @onready var player: CharacterBody2D = %Player
 @onready var line:  Line2D = %Line
 @onready var camera: Camera2D = %Camera
+
+@onready var player_gravity_area: Area2D = %Player/Area2D
 
 @onready var time_left_label: Label = %TimeLeftLabel
 
@@ -35,8 +39,11 @@ func _ready() -> void:
 	_level_timer.autostart = true
 	_level_timer.one_shot = true
 	_level_timer.wait_time = time_limit
-	_level_timer.timeout.connect(self.timeout.emit)
+	_level_timer.timeout.connect(_on_timeout)
 	add_child(_level_timer, false, Node.INTERNAL_MODE_FRONT)
+
+	# Hook into the player gravity area to check when we lose all planet influences.
+	player_gravity_area.area_exited.connect(_check_player_gravity_influence.unbind(1))
 
 
 func _physics_process(_delta: float) -> void:
@@ -72,3 +79,23 @@ func get_next_level() -> PackedScene:
 	if not next_level_path:
 		return null
 	return ResourceLoader.load(next_level_path, "PackedScene")
+
+
+func _check_player_gravity_influence() -> void:
+	var overlapping_areas: Array[Area2D] = player_gravity_area.get_overlapping_areas()
+	var overlapping_planets: Array[Planet]
+	for area in overlapping_areas:
+		if area.owner is Planet:
+			overlapping_planets.append(area.owner)
+	if overlapping_planets.is_empty():
+		print("Freedom!")
+
+
+func _on_timeout() -> void:
+	timeout.emit()
+	_on_failed()
+
+
+func _on_failed() -> void:
+	# TODO: Temporary level fail handler.
+	get_tree().create_timer(3.0).timeout.connect(get_tree().reload_current_scene)
