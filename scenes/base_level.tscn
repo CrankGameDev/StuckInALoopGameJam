@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwkvl3jd8jys6"]
+[gd_scene load_steps=7 format=3 uid="uid://dwkvl3jd8jys6"]
 
 [ext_resource type="Script" path="res://scripts/scenes/level.gd" id="1_v5pm0"]
 [ext_resource type="Texture2D" uid="uid://d2cvl8o4joi4" path="res://Starfield.png" id="2_1bu0k"]
@@ -12,6 +12,9 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_ychdu"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfogs"]
+bg_color = Color(0, 0, 0, 0.501961)
 
 [node name="Level" type="Node"]
 script = ExtResource("1_v5pm0")
@@ -88,3 +91,39 @@ top_level = true
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Player/Camera"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfogs")
+
+[node name="Label" type="Label" parent="Player/Camera/Panel"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 218.0
+offset_right = 521.0
+offset_bottom = 241.0
+scale = Vector2(3, 3)
+text = "game pausEd"
+
+[node name="Button" type="Button" parent="Player/Camera/Panel"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 349.0
+offset_right = 531.0
+offset_bottom = 380.0
+scale = Vector2(3, 3)
+text = "CONTINUE"
+
+[connection signal="pressed" from="Player/Camera/Panel/Button" to="." method="_on_button_pressed"]

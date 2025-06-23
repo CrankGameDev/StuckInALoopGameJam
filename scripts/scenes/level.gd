@@ -73,12 +73,24 @@ func _process(_delta: float) -> void:
 		"secs": "%02d" % seconds_left,
 	})
 
+	if Global.pause:
+		$Player/Camera/Panel.visible = true
+	else:
+		$Player/Camera/Panel.visible = false
+		$Player/Camera/Panel.scale = Vector2(1,1)/$Player/Camera.zoom
+	if _level_timer.paused != Global.pause:
+		_level_timer.paused = Global.pause
+
 
 func get_next_level() -> PackedScene:
 	var next_level_path: String = LevelManager.get_next_level_path(self)
 	if not next_level_path:
 		return null
 	return ResourceLoader.load(next_level_path, "PackedScene")
+
+
+func _on_button_pressed() -> void:
+	Global.pause = false
 
 
 func _check_player_gravity_influence() -> void:
