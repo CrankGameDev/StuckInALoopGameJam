@@ -5,15 +5,26 @@
 
 [node name="DemoLevel" instance=ExtResource("1_kmtod")]
 
-[node name="Planet1" parent="." index="1" instance=ExtResource("2_ng8dm")]
+[node name="Planet1" parent="." index="2" instance=ExtResource("2_ng8dm")]
 position = Vector2(254, 226)
 size = 25.0
-pull = 1.75
 
-[node name="Planet2" parent="." index="2" instance=ExtResource("2_ng8dm")]
-position = Vector2(574, 506)
+[node name="Planet2" parent="." index="3" instance=ExtResource("2_ng8dm")]
+position = Vector2(591, 785)
 size = 15.0
-pull = 1.75
+pull = 2.0
 
-[node name="Planet3" parent="." index="3" instance=ExtResource("2_ng8dm")]
-position = Vector2(744, 370)
+[node name="Planet4" parent="." index="4" instance=ExtResource("2_ng8dm")]
+position = Vector2(937, 985)
+size = 15.0
+pull = 2.0
+
+[node name="Planet3" parent="." index="5" instance=ExtResource("2_ng8dm")]
+position = Vector2(1457, 382)
+pull = 0.5
+
+[node name="Planet5" parent="." index="6" instance=ExtResource("2_ng8dm")]
+position = Vector2(2649, 2006)
+size = 100.0
+gravity = 0.5
+pull = 20.0

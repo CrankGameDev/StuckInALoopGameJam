@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxt3pjjx47hr7"]
+[gd_scene load_steps=11 format=3 uid="uid://cxt3pjjx47hr7"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_46qjo"]
 [ext_resource type="Script" path="res://fuel_component.gd" id="2_x1c4a"]
@@ -15,6 +15,9 @@ corner_radius_bottom_left = 1024
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwns1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytg76"]
+
+[sub_resource type="Gradient" id="Gradient_cbwue"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2m2h"]
 resource_local_to_scene = true
@@ -54,6 +57,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
 shape = SubResource("CircleShape2D_vwns1")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ytg76")
@@ -67,6 +71,10 @@ default_color = Color(0, 1, 0, 1)
 points = PackedVector2Array(0, 0, 30, 0)
 width = 5.0
 default_color = Color(1, 1, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="."]
+default_color = Color(1, 0, 1, 1)
+gradient = SubResource("Gradient_cbwue")
 
 [node name="UIComponents" type="Node2D" parent="."]
 top_level = true

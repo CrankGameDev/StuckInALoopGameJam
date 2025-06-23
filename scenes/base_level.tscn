@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwkvl3jd8jys6"]
+[gd_scene load_steps=6 format=3 uid="uid://dwkvl3jd8jys6"]
 
 [ext_resource type="Script" path="res://scripts/scenes/level.gd" id="1_v5pm0"]
+[ext_resource type="Texture2D" uid="uid://d2cvl8o4joi4" path="res://Starfield.png" id="2_1bu0k"]
 [ext_resource type="PackedScene" uid="uid://cxt3pjjx47hr7" path="res://scenes/player.tscn" id="2_20c08"]
 
 [sub_resource type="Curve" id="Curve_qk4wr"]
@@ -55,6 +56,20 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "00:00"
 horizontal_alignment = 2
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -100
+texture_filter = 3
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 768)
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D"]
+offset_left = -1024.0
+offset_top = -768.0
+offset_right = 2048.0
+offset_bottom = 1536.0
+texture = ExtResource("2_1bu0k")
+stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_20c08")]
 unique_name_in_owner = true
