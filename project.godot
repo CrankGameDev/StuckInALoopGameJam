@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 
+[gui]
+
+theme/custom="res://resources/UI/button.tres"
+
 [input]
 
 click={
