@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=17 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
+[ext_resource type="Texture2D" uid="uid://d2cvl8o4joi4" path="res://Starfield.png" id="2_01sbq"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="2_ywwuq"]
 [ext_resource type="Script" path="res://fuel_component.gd" id="4_rb1nm"]
 [ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="4_w8gs4"]
@@ -15,6 +16,9 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_rbhqo"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_c22ds"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
 bg_color = Color(1, 0.352751, 0.165173, 1)
@@ -48,9 +52,24 @@ shader_parameter/arrow_visibility = 0.0
 bg_color = Color(1, 1, 1, 1)
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5h02"]
+bg_color = Color(0, 0, 0, 0.501961)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4y4tq")
 curve = SubResource("Curve_n3dqp")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 768)
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D"]
+offset_left = -1024.0
+offset_top = -768.0
+offset_right = 2048.0
+offset_bottom = 1536.0
+texture = ExtResource("2_01sbq")
+stretch_mode = 1
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 1.0
@@ -59,19 +78,34 @@ gradient = SubResource("Gradient_rbhqo")
 [node name="StaticBody2D" parent="." instance=ExtResource("1_l6ocb")]
 position = Vector2(254, 226)
 size = 25.0
-pull = 1.75
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("1_l6ocb")]
-position = Vector2(574, 506)
+position = Vector2(591, 785)
 size = 15.0
-pull = 1.75
+pull = 2.0
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(937, 985)
+size = 15.0
+pull = 2.0
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("1_l6ocb")]
-position = Vector2(744, 370)
+position = Vector2(1457, 382)
+pull = 0.5
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("1_l6ocb")]
+position = Vector2(2649, 2006)
+size = 100.0
+gravity = 0.5
+pull = 20.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(153, 226)
+position = Vector2(158, 226)
 script = ExtResource("2_ywwuq")
+
+[node name="Line2D2" type="Line2D" parent="CharacterBody2D"]
+default_color = Color(1, 0, 1, 1)
+gradient = SubResource("Gradient_c22ds")
 
 [node name="FuelComponent" type="Node" parent="CharacterBody2D"]
 script = ExtResource("4_rb1nm")
@@ -87,6 +121,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
 shape = SubResource("CircleShape2D_vwns1")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CircleShape2D_ytg76")
@@ -103,7 +138,7 @@ default_color = Color(1, 1, 0, 1)
 
 [node name="UIComponents" type="Node2D" parent="CharacterBody2D"]
 top_level = true
-position = Vector2(153, 226)
+position = Vector2(158, 226)
 
 [node name="FuelGauge" type="Panel" parent="CharacterBody2D/UIComponents" node_paths=PackedStringArray("fuel_component")]
 texture_filter = 1
@@ -133,3 +168,39 @@ update_scale = false
 [node name="Label" type="Label" parent="Camera2D"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="Camera2D"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5h02")
+
+[node name="Label" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 218.0
+offset_right = 521.0
+offset_bottom = 241.0
+scale = Vector2(3, 3)
+text = "game pausEd"
+
+[node name="Button" type="Button" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 349.0
+offset_right = 531.0
+offset_bottom = 380.0
+scale = Vector2(3, 3)
+text = "CONTINUE"
+
+[connection signal="pressed" from="Camera2D/Panel/Button" to="." method="_on_button_pressed"]

@@ -58,6 +58,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_od5rt")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_5ukuw")
