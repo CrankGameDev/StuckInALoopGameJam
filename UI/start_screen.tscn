@@ -5,15 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_8eeu4"]
 [ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_jtdsg"]
 [ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="4_sw8fg"]
-
-[sub_resource type="Theme" id="Theme_w44k5"]
-Label/colors/font_color = Color(0, 0.422336, 0.422517, 1)
-Label/colors/font_outline_color = Color(0.658824, 0.796078, 0.839216, 1)
-Label/colors/font_shadow_color = Color(0.0196078, 0.407843, 0.662745, 1)
-Label/constants/line_spacing = 3
-Label/constants/outline_size = 2
-Label/constants/shadow_offset_x = 2
-Label/font_sizes/font_size = 50
+[ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_kqbl7"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -85,8 +77,7 @@ offset_top = 48.9956
 offset_right = 341.497
 offset_bottom = 139.996
 grow_horizontal = 2
-theme = SubResource("Theme_w44k5")
-theme_override_colors/font_color = Color(0.658824, 0.796078, 0.839216, 1)
+theme = ExtResource("5_kqbl7")
 theme_override_fonts/font = ExtResource("4_sw8fg")
 text = "Stuck in a Loop! "
 

@@ -1,19 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ew1v4jekbcjl"]
+[gd_scene load_steps=7 format=3 uid="uid://cm6xlr52korh7"]
 
-[ext_resource type="Script" path="res://UI/game_over.gd" id="1_0krxp"]
-[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_7toej"]
-[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_7w6pr"]
-[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_jgph0"]
-[ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_s01wx"]
+[ext_resource type="Script" path="res://UI/win_screen.gd" id="1_tbd0j"]
+[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_u4lku"]
+[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="3_0u5e5"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="4_2x1ek"]
+[ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="5_uv7yj"]
 
-[node name="game_over" type="Control"]
+[sub_resource type="Theme" id="Theme_2gcu6"]
+Label/colors/font_color = Color(0.0196078, 0.407843, 0.662745, 1)
+Label/colors/font_outline_color = Color(0.658824, 0.796078, 0.839216, 1)
+Label/colors/font_shadow_color = Color(0, 0.423529, 0.423529, 1)
+Label/constants/line_spacing = 6
+Label/constants/outline_size = 6
+Label/constants/shadow_offset_x = 2
+Label/font_sizes/font_size = 50
+
+[node name="WinScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0krxp")
+size_flags_horizontal = 4
+script = ExtResource("1_tbd0j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -32,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jgph0")
+texture = ExtResource("2_u4lku")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -49,25 +59,25 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.982934, 1.49098)
-theme = ExtResource("1_7toej")
+theme = ExtResource("3_0u5e5")
 theme_override_constants/separation = 8
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7w6pr")
+theme_override_fonts/font = ExtResource("4_2x1ek")
 text = "Play Again?"
 
 [node name="Main" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7w6pr")
+theme_override_fonts/font = ExtResource("4_2x1ek")
 text = "Main Menu "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7w6pr")
+theme_override_fonts/font = ExtResource("4_2x1ek")
 text = "Exit"
 
-[node name="GameOver" type="Label" parent="."]
+[node name="youwin" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -77,8 +87,10 @@ offset_top = 48.9956
 offset_right = 341.497
 offset_bottom = 139.996
 grow_horizontal = 2
-theme = ExtResource("5_s01wx")
-text = "Game Over"
+theme = SubResource("Theme_2gcu6")
+theme_override_fonts/font = ExtResource("5_uv7yj")
+text = "You Made It!
+You Are Free!"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
