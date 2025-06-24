@@ -1,0 +1,9 @@
+join friendly_planet center
+friendly_planet: Oh hey!
+friendly_planet: Watch out, don't crash!
+join player center
+player: I'm trying not to...
+friendly_planet: [speed=0.5]...[n+]\
+Well, okay then. \
+Good luck.\
+[pause=0.5]

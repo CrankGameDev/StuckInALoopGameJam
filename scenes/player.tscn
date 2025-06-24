@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxt3pjjx47hr7"]
+[gd_scene load_steps=13 format=3 uid="uid://cxt3pjjx47hr7"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_46qjo"]
 [ext_resource type="Script" path="res://fuel_component.gd" id="2_x1c4a"]
 [ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="3_71dae"]
+[ext_resource type="Script" path="res://scripts/nodes/dialogue_speaker.gd" id="3_rn3v2"]
 [ext_resource type="Script" path="res://fuel_gauge.gd" id="4_2l8r8"]
+[ext_resource type="Resource" path="res://resources/dialogue/characters/player.dch" id="4_esitp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
 bg_color = Color(1, 0.352751, 0.165173, 1)
@@ -41,10 +43,15 @@ bg_color = Color(1, 1, 1, 1)
 border_color = Color(1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 257
 script = ExtResource("1_46qjo")
 
 [node name="FuelComponent" type="Node" parent="."]
 script = ExtResource("2_x1c4a")
+
+[node name="DialogueSpeaker" type="Node2D" parent="."]
+script = ExtResource("3_rn3v2")
+character = ExtResource("4_esitp")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -10.0

@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct8c1lrb4re6y"]
+[gd_scene load_steps=8 format=3 uid="uid://ct8c1lrb4re6y"]
 
 [ext_resource type="PackedScene" uid="uid://dwkvl3jd8jys6" path="res://scenes/base_level.tscn" id="1_2e52p"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="2_tm2g0"]
+[ext_resource type="Script" path="res://scripts/nodes/dialogue_speaker.gd" id="3_876ao"]
+[ext_resource type="Script" path="res://scripts/nodes/dialogue_trigger.gd" id="3_qbxxf"]
+[ext_resource type="Resource" path="res://resources/dialogue/characters/friendly_planet.dch" id="4_cynsd"]
+[ext_resource type="Resource" path="res://resources/dialogue/timelines/friendly_planet_intro.dtl" id="5_5a1g4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5g5q"]
+radius = 172.0
 
 [node name="DemoLevel" instance=ExtResource("1_2e52p")]
 time_limit = 120.0
@@ -14,6 +21,21 @@ size = 25.0
 position = Vector2(916, -383)
 size = 15.0
 pull = 2.0
+
+[node name="DialogueSpeaker" type="Node2D" parent="Planet2" index="0"]
+script = ExtResource("3_876ao")
+character = ExtResource("4_cynsd")
+
+[node name="DialogueTrigger" type="Area2D" parent="Planet2" index="5"]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("3_qbxxf")
+timeline = ExtResource("5_5a1g4")
+
+[node name="Shape" type="CollisionShape2D" parent="Planet2/DialogueTrigger" index="0"]
+shape = SubResource("CircleShape2D_s5g5q")
+debug_color = Color(0.67368, 0.2856, 0.84, 0.513726)
 
 [node name="Planet4" parent="." index="4" instance=ExtResource("2_tm2g0")]
 position = Vector2(1967, 1030)
