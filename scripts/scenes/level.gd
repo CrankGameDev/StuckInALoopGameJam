@@ -99,7 +99,7 @@ func _check_player_gravity_influence() -> void:
 	for area in overlapping_areas:
 		if area.owner is Planet:
 			overlapping_planets.append(area.owner)
-	if overlapping_planets.is_empty():
+	if overlapping_planets.is_empty() and process_mode != PROCESS_MODE_DISABLED:
 		# TODO: Temporary level success handler.
 		print("Freedom!")
 		var next_level: PackedScene = get_next_level()
