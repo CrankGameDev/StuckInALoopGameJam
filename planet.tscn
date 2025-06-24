@@ -2,14 +2,19 @@
 
 [ext_resource type="Script" path="res://planet.gd" id="1_3mj1e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1qsaa"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0siqi"]
+resource_local_to_scene = true
 
-[sub_resource type="Gradient" id="Gradient_8wd4l"]
-offsets = PackedFloat32Array(0, 0.27, 0.3, 0.33, 0.6, 0.7, 0.701)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0.501961, 1, 0.184314, 0.184314, 0)
+[sub_resource type="Gradient" id="Gradient_ia6re"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0, 0.037619, 0.057619, 0.27, 0.3, 0.33, 0.6, 0.7, 0.701)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0.5, 1, 0.18, 0.18, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gljdo"]
-gradient = SubResource("Gradient_8wd4l")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_doi3m"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_ia6re")
+width = 420
+height = 420
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
@@ -20,14 +25,15 @@ corner_radius_top_right = 1024
 corner_radius_bottom_right = 1024
 corner_radius_bottom_left = 1024
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ukuw"]
-radius = 60.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2kk5"]
+resource_local_to_scene = true
+radius = 210.0
 
 [node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource("1_3mj1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1qsaa")
+shape = SubResource("CircleShape2D_0siqi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -41,7 +47,7 @@ offset_right = 60.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_gljdo")
+texture = SubResource("GradientTexture2D_doi3m")
 
 [node name="PlanetPanel" type="Panel" parent="."]
 anchors_preset = 8
@@ -61,4 +67,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_od5rt")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_5ukuw")
+shape = SubResource("CircleShape2D_i2kk5")
