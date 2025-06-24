@@ -70,7 +70,7 @@ text = "Play Again?"
 [node name="Main" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_2x1ek")
-text = "Main Menu "
+text = "Main Menu"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
