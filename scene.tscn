@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bg4f1c0nabtl5"]
+[gd_scene load_steps=18 format=3 uid="uid://bg4f1c0nabtl5"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_4y4tq"]
 [ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="1_l6ocb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://fuel_component.gd" id="4_rb1nm"]
 [ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="4_w8gs4"]
 [ext_resource type="Script" path="res://fuel_gauge.gd" id="5_tcowk"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="8_8wr2r"]
 
 [sub_resource type="Curve" id="Curve_n3dqp"]
 min_value = 0.5
@@ -170,7 +171,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Panel" type="Panel" parent="Camera2D"]
-visible = false
+z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -187,20 +188,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_u5h02")
 
 [node name="Label" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 418.0
-offset_top = 218.0
-offset_right = 521.0
-offset_bottom = 241.0
+offset_left = 376.0
+offset_top = 226.0
+offset_right = 529.0
+offset_bottom = 256.0
 scale = Vector2(3, 3)
-text = "game pausEd"
+theme_override_fonts/font = ExtResource("8_8wr2r")
+text = "game paused"
 
 [node name="Button" type="Button" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 440.0
+offset_left = 438.0
 offset_top = 349.0
-offset_right = 531.0
-offset_bottom = 380.0
-scale = Vector2(3, 3)
+offset_right = 647.0
+offset_bottom = 410.0
+scale = Vector2(1.68347, 1.94823)
+theme_override_fonts/font = ExtResource("8_8wr2r")
 text = "CONTINUE"
 
 [connection signal="pressed" from="Camera2D/Panel/Button" to="." method="_on_button_pressed"]

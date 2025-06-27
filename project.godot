@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://global.gd"
 LevelManager="*res://scenes/global/LevelManager.tscn"
 
+[gui]
+
+theme/custom="res://resources/UI/button.tres"
+
 [input]
 
 click={
