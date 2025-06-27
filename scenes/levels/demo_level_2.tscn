@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct8c1lrb4re6y"]
+
+[ext_resource type="PackedScene" uid="uid://dwkvl3jd8jys6" path="res://scenes/base_level.tscn" id="1_2e52p"]
+[ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="2_tm2g0"]
+
+[node name="DemoLevel" instance=ExtResource("1_2e52p")]
+time_limit = 120.0
+
+[node name="Planet1" parent="." index="2" instance=ExtResource("2_tm2g0")]
+position = Vector2(783, 503)
+size = 25.0
+
+[node name="Planet2" parent="." index="3" instance=ExtResource("2_tm2g0")]
+position = Vector2(916, -383)
+size = 15.0
+pull = 2.0
+
+[node name="Planet4" parent="." index="4" instance=ExtResource("2_tm2g0")]
+position = Vector2(1967, 1030)
+size = 15.0
+pull = 2.0
+
+[node name="Planet3" parent="." index="5" instance=ExtResource("2_tm2g0")]
+position = Vector2(821, 1474)
+pull = 0.5
+
+[node name="Planet5" parent="." index="6" instance=ExtResource("2_tm2g0")]
+position = Vector2(3000, 0)
+size = 100.0
+gravity = 0.5
+pull = 20.0
