@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ew1v4jekbcjl"]
 
-[ext_resource type="Script" path="res://UI/game_over.gd" id="1_0krxp"]
 [ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_7toej"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ja4oe"]
 [ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_7w6pr"]
 [ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_jgph0"]
 [ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_s01wx"]
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0krxp")
+script = ExtResource("1_ja4oe")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

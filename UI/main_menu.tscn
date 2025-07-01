@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://hu16por2uapg"]
 
-[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_2pxaq"]
-[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_yji6k"]
-[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_8eeu4"]
-[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_jtdsg"]
-[ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="4_sw8fg"]
-[ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_kqbl7"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_reny4"]
+[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_gop0n"]
+[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="3_puqbu"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="4_oqt7g"]
+[ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_foxdw"]
+[ext_resource type="FontFile" uid="uid://04q657amd8bi" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.woff" id="6_p2rkx"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -17,7 +17,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.01054, 1.0205)
-script = ExtResource("1_yji6k")
+script = ExtResource("1_reny4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8eeu4")
+texture = ExtResource("2_gop0n")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -53,18 +53,18 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.982934, 1.49098)
-theme = ExtResource("1_2pxaq")
+theme = ExtResource("3_puqbu")
 theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jtdsg")
+theme_override_fonts/font = ExtResource("4_oqt7g")
 text = " Start "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jtdsg")
+theme_override_fonts/font = ExtResource("4_oqt7g")
 text = "Exit"
 
 [node name="Label" type="Label" parent="."]
@@ -77,8 +77,8 @@ offset_top = 48.9956
 offset_right = 341.497
 offset_bottom = 139.996
 grow_horizontal = 2
-theme = ExtResource("5_kqbl7")
-theme_override_fonts/font = ExtResource("4_sw8fg")
+theme = ExtResource("5_foxdw")
+theme_override_fonts/font = ExtResource("6_p2rkx")
 text = "Stuck in a Loop! "
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
