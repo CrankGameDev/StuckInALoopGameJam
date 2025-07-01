@@ -28,3 +28,5 @@ position = Vector2(2649, 2006)
 size = 100.0
 gravity = 0.5
 pull = 20.0
+
+[connection signal="pressed" from="Player/Camera/Panel/Label/VBoxContainer/Mainmenu" to="." method="_on_mainmenu_pressed"]
