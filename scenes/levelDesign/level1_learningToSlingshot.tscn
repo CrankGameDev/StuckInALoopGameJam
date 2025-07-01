@@ -1,0 +1,199 @@
+[gd_scene load_steps=19 format=3 uid="uid://dljaax5tred88"]
+
+[ext_resource type="Script" path="res://scene.gd" id="1_lmeja"]
+[ext_resource type="Texture2D" uid="uid://d2cvl8o4joi4" path="res://Starfield.png" id="2_djfwx"]
+[ext_resource type="PackedScene" uid="uid://oaieqr0t3vh5" path="res://planet.tscn" id="3_mvdnc"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="4_x8y2a"]
+[ext_resource type="Script" path="res://fuel_component.gd" id="5_o4qrx"]
+[ext_resource type="Shader" uid="uid://cyuvemrocgfa8" path="res://fuel_gauge.visualshader.tres" id="6_3qi7w"]
+[ext_resource type="Script" path="res://fuel_gauge.gd" id="7_t0nig"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="8_3620m"]
+[ext_resource type="PackedScene" uid="uid://dwkvl3jd8jys6" path="res://scenes/base_level.tscn" id="9_jg7pi"]
+
+[sub_resource type="Curve" id="Curve_n3dqp"]
+min_value = 0.5
+max_value = 1.5
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_rbhqo"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_c22ds"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131le"]
+bg_color = Color(1, 0.352751, 0.165173, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwns1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytg76"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2m2h"]
+resource_local_to_scene = true
+shader = ExtResource("6_3qi7w")
+shader_parameter/vertical_alignment = true
+shader_parameter/arrow_width = 12.0
+shader_parameter/arrow_ratio = 0.5
+shader_parameter/arrow_speed = 2.0
+shader_parameter/arrow_spacing = -0.05
+shader_parameter/value = 1.0
+shader_parameter/wave_width = 1.0
+shader_parameter/wave_speed_factor = 12.0
+shader_parameter/wave_edge_offset = 0.015
+shader_parameter/wave_factor = 0.013
+shader_parameter/wave_burn_effect = 0.0
+shader_parameter/meter_shape = 5.0
+shader_parameter/arrow_visibility = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v40hl"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5h02"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lmeja")
+curve = SubResource("Curve_n3dqp")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 768)
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D"]
+offset_left = -1024.0
+offset_top = -768.0
+offset_right = 2048.0
+offset_bottom = 1536.0
+texture = ExtResource("2_djfwx")
+stretch_mode = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+gradient = SubResource("Gradient_rbhqo")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("3_mvdnc")]
+position = Vector2(254, 226)
+size = 25.0
+
+[node name="SUN" parent="." instance=ExtResource("3_mvdnc")]
+position = Vector2(-3488, 1465)
+size = 500.0
+gravity = 0.5
+pull = 20.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(158, 226)
+script = ExtResource("4_x8y2a")
+
+[node name="Line2D2" type="Line2D" parent="CharacterBody2D"]
+default_color = Color(1, 0, 1, 1)
+gradient = SubResource("Gradient_c22ds")
+
+[node name="FuelComponent" type="Node" parent="CharacterBody2D"]
+script = ExtResource("5_o4qrx")
+
+[node name="Panel" type="Panel" parent="CharacterBody2D"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_131le")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_vwns1")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_ytg76")
+
+[node name="LineVelocity" type="Line2D" parent="CharacterBody2D"]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="LineThrust" type="Line2D" parent="CharacterBody2D"]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="UIComponents" type="Node2D" parent="CharacterBody2D"]
+top_level = true
+position = Vector2(158, 226)
+
+[node name="FuelGauge" type="Panel" parent="CharacterBody2D/UIComponents" node_paths=PackedStringArray("fuel_component")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_i2m2h")
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = -16.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v40hl")
+script = ExtResource("7_t0nig")
+fuel_component = NodePath("../../FuelComponent")
+
+[node name="RemotePosition" type="RemoteTransform2D" parent="CharacterBody2D"]
+remote_path = NodePath("../UIComponents")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="Camera2D"]
+visible = false
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5h02")
+
+[node name="Label" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 226.0
+offset_right = 529.0
+offset_bottom = 256.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("8_3620m")
+text = "game paused"
+
+[node name="Button" type="Button" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 349.0
+offset_right = 647.0
+offset_bottom = 410.0
+scale = Vector2(1.68347, 1.94823)
+theme_override_fonts/font = ExtResource("8_3620m")
+text = "CONTINUE"
+
+[node name="Level" parent="." instance=ExtResource("9_jg7pi")]
+
+[connection signal="pressed" from="Camera2D/Panel/Button" to="." method="_on_button_pressed"]
