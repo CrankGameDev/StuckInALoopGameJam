@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NowThatsWhatICallGaming"
-run/main_scene="res://scene.tscn"
+run/main_scene="res://UI/start_screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -58,6 +58,10 @@ glossary/default_case_sensitive=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[gui]
+
+theme/custom="res://resources/UI/button.tres"
 
 [input]
 

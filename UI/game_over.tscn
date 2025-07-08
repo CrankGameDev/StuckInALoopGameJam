@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://ew1v4jekbcjl"]
+
+[ext_resource type="Script" path="res://UI/game_over.gd" id="1_0krxp"]
+[ext_resource type="Theme" uid="uid://dwywx3serb5i0" path="res://resources/UI/button.tres" id="1_7toej"]
+[ext_resource type="FontFile" uid="uid://dt4mu7ule0ag7" path="res://resources/font/opendyslexic-0.91.12/compiled/OpenDyslexic-Bold.otf" id="2_7w6pr"]
+[ext_resource type="Texture2D" uid="uid://b035phwbjd5dx" path="res://resources/space backgrounds/purple background_back.jpg" id="2_jgph0"]
+[ext_resource type="Theme" uid="uid://do50re3wqkwpi" path="res://UI/screentext.tres" id="5_s01wx"]
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0krxp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00171, 1)
+color = Color(0.0035565, 4.06103e-08, 0.0706538, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jgph0")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.389757
+anchor_top = 0.503858
+anchor_right = 0.610243
+anchor_bottom = 0.85108
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.982934, 1.49098)
+theme = ExtResource("1_7toej")
+theme_override_constants/separation = 8
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7w6pr")
+text = "Play Again?"
+
+[node name="Main" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7w6pr")
+text = "Main Menu "
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7w6pr")
+text = "Exit"
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -338.503
+offset_top = 48.9956
+offset_right = 341.497
+offset_bottom = 139.996
+grow_horizontal = 2
+theme = ExtResource("5_s01wx")
+text = "Game Over"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -92,6 +92,10 @@ func get_next_level() -> PackedScene:
 func _on_button_pressed() -> void:
 	Global.pause = false
 
+func _on_mainmenu_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/start_screen.tscn")
+
+
 
 func _check_player_gravity_influence() -> void:
 	var overlapping_areas: Array[Area2D] = player_gravity_area.get_overlapping_areas()

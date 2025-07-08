@@ -115,15 +115,23 @@ offset_top = 218.0
 offset_right = 521.0
 offset_bottom = 241.0
 scale = Vector2(3, 3)
-text = "game pausEd"
+text = "game paused"
 
-[node name="Button" type="Button" parent="Player/Camera/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Camera/Panel/Label"]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 349.0
-offset_right = 531.0
-offset_bottom = 380.0
-scale = Vector2(3, 3)
+offset_left = 10.3333
+offset_top = 26.6667
+offset_right = 169.333
+offset_bottom = 130.667
+scale = Vector2(0.52, 0.521129)
+
+[node name="Button" type="Button" parent="Player/Camera/Panel/Label/VBoxContainer"]
+layout_mode = 2
 text = "CONTINUE"
 
-[connection signal="pressed" from="Player/Camera/Panel/Button" to="." method="_on_button_pressed"]
+[node name="Mainmenu" type="Button" parent="Player/Camera/Panel/Label/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Player/Camera/Panel/Label/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Player/Camera/Panel/Label/VBoxContainer/Mainmenu" to="." method="_on_mainmenu_pressed"]
