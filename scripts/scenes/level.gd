@@ -7,6 +7,9 @@ signal timeout
 
 const Planet: Script = preload("res://planet.gd")
 
+@export var starting_fuel_capacity: int = 100
+@export var starting_fuel_amount: int = 100
+
 @onready var player: CharacterBody2D = %Player
 @onready var line:  Line2D = %Line
 @onready var camera: Camera2D = %Camera
@@ -44,6 +47,11 @@ func _ready() -> void:
 
 	# Hook into the player gravity area to check when we lose all planet influences.
 	player_gravity_area.area_exited.connect(_check_player_gravity_influence.unbind(1))
+
+	# Assign the starting fuel values.
+	var player_fuel: FuelComponent = player.get_node("FuelComponent")
+	player_fuel.amount = starting_fuel_amount
+	player_fuel.capacity = starting_fuel_capacity
 
 
 func _physics_process(_delta: float) -> void:
