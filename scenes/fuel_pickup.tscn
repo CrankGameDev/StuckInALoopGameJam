@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkcj15bhlhpxv"]
+
+[ext_resource type="Texture2D" uid="uid://c34g28s60r0k2" path="res://assets/sprites/fuel_can.png" id="1_03i8f"]
+[ext_resource type="Script" path="res://scripts/scenes/fuel_pickup.gd" id="1_lgntw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wuo5"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_6bpsm"]
+resource_name = "pop_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.125, 1.125), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g8odx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sheb6"]
+resource_name = "spin"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ja0f"]
+_data = {
+"RESET": SubResource("Animation_g8odx"),
+"pop_out": SubResource("Animation_6bpsm"),
+"spin": SubResource("Animation_sheb6")
+}
+
+[node name="FuelPickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_lgntw")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2wuo5")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_03i8f")
+offset = Vector2(0, -1)
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ja0f")
+}
+autoplay = "RESET"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

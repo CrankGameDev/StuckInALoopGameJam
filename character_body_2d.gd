@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const SPEED = 30.0
@@ -105,19 +106,19 @@ func _physics_process(delta: float) -> void:
 
 		#velocity.x -= x_vel
 		velocity -= Vector2(x_vel,y_vel)
-		
+
 		$Line2D2.clear_points()
 		$Line2D2.add_point(Vector2.ZERO)
 		simLength = 0
-		
+
 		var space_rid = get_world_2d().space
 		var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
-		
+
 		var query = PhysicsPointQueryParameters2D.new()
 		query.collide_with_areas = true
 		query.collide_with_bodies = false
 		query.set_collision_mask(1)
-		
+
 		query.position = position + (velocity*delta)
 		#print(position)
 		#print(query.position)
@@ -147,7 +148,7 @@ func _physics_process(delta: float) -> void:
 			#print(result)
 			$Line2D2.add_point(query.position-position)
 			simLength += $Line2D2.get_point_position($Line2D2.get_point_count()-1).distance_to($Line2D2.get_point_position($Line2D2.get_point_count()-2))
-			
+
 			o-=1
 
 

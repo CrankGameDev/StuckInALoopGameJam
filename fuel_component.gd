@@ -26,3 +26,7 @@ func set_capacity(value: float) -> void:
 
 func get_ratio() -> float:
 	return amount / capacity
+
+
+func get_space() -> float:
+	return maxf(capacity - amount, 0.0)
