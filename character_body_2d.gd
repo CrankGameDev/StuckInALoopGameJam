@@ -8,6 +8,8 @@ var y_vel : float = 0
 
 var simLength : float = 0
 
+var refuelling : bool = false
+
 var DEBUG : float = 0
 
 @onready var fuel_component: FuelComponent = $FuelComponent
@@ -27,10 +29,13 @@ func _physics_process(delta: float) -> void:
 			var a = $Area2D.get_overlapping_areas()
 			var closeDist: float = 99999
 			#simulate_gravity(a)
+			var orbits = false
 			for i in a.size():
 				#print(a[i])
 				var result = simulate_gravity(a[i],global_position)
 				velocity += result*delta
+				if DEBUG > 0:
+					orbits = true
 				#var pull = a[i].get_parent().pull
 				#var size = a[i].get_parent().size
 				#var gravity = a[i].get_parent().gravity
@@ -53,6 +58,14 @@ func _physics_process(delta: float) -> void:
 				#velocity += c*Vector2(e,e) * delta
 				#print(c*Vector2(b-a[i].get_parent().size,b-a[i].get_parent().size))
 				#print(c*Vector2(d-a[i].get_parent().size,d-a[i].get_parent().size))
+			if orbits:
+				if $FuelRegenTimer.is_stopped() and !refuelling:
+					print("start fuel timer")
+					$FuelRegenTimer.start()
+			else:
+				$FuelRegenTimer.stop()
+				refuelling = false
+				print("stop timer (no orbit)")
 		else:
 			velocity = Vector2.ZERO
 
@@ -92,8 +105,14 @@ func _physics_process(delta: float) -> void:
 			velocity += 50*point*delta
 			fuel_component.amount -= delta * 5.0
 			$LineThrust.points[1] = -point*20
+			$FuelRegenTimer.stop()
+			refuelling = false
+			print("stop timer (thrust)")
 		else:
 			$LineThrust.points[1] = Vector2.ZERO
+
+		if refuelling:
+			fuel_component.amount += delta * 5.0
 
 		$LineVelocity.points[1] = velocity
 		#$LineThrust.points[1] = point*20
@@ -169,3 +188,8 @@ func simulate_gravity(input,pointPos):
 	if final < 0:
 		final = 0.1
 	return direct*Vector2(final,final)
+
+
+func _on_fuel_regen_timer_timeout() -> void:
+	refuelling = true
+	print("hi")

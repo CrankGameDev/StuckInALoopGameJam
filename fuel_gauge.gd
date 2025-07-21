@@ -42,6 +42,9 @@ func _update() -> void:
 		material.set_shader_parameter(&"wave_burn_effect", clampf(0.0, burn_effect + diff * 15.0, 1.25))
 		show_arrows()
 		_arrow_timer.start(0.25)
+	if diff < 0.0:
+		show_arrows()
+		_arrow_timer.start(0.25)
 	_last_ratio = ratio
 
 

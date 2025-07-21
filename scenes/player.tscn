@@ -101,3 +101,9 @@ fuel_component = NodePath("../../FuelComponent")
 remote_path = NodePath("../UIComponents")
 update_rotation = false
 update_scale = false
+
+[node name="FuelRegenTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="FuelRegenTimer" to="." method="_on_fuel_regen_timer_timeout"]
