@@ -19,6 +19,8 @@ extends StaticBody2D
 		_should_update = true
 		_update.call_deferred()
 
+@export var star: bool = false
+
 
 # Signifies whether an update is necessary.
 # Deferred calls run at the end of the current frame,

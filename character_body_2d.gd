@@ -10,6 +10,10 @@ var simLength : float = 0
 
 var refuelling : bool = false
 
+var isBeingPulled : bool = false
+var pullFactor : float = 1
+var pullDir : Vector2 = Vector2.ZERO
+
 var DEBUG : float = 0
 
 @onready var fuel_component: FuelComponent = $FuelComponent
@@ -30,12 +34,34 @@ func _physics_process(delta: float) -> void:
 			var closeDist: float = 99999
 			#simulate_gravity(a)
 			var orbits = false
+			var inStar:bool = false
 			for i in a.size():
 				#print(a[i])
-				var result = simulate_gravity(a[i],global_position)
-				velocity += result*delta
-				if DEBUG > 0:
-					orbits = true
+				if !a[i].get_parent().star:
+					#print("not star")
+					$StarPullTimer.stop()
+					isBeingPulled = false
+					pullFactor = 1
+					#if pullDir != Vector2.ZERO:
+						#var cut = pullDir/1.2
+						#velocity -= cut
+						#pullDir -= cut
+					pullDir = Vector2.ZERO
+					var result = simulate_gravity(a[i],global_position)
+					velocity += result*delta
+					if DEBUG > 0:
+						orbits = true
+				else:
+					if isBeingPulled:
+						var starPos = a[i].get_parent().global_position
+						var direct = global_position.direction_to(starPos)
+						var final = direct*Vector2(pullFactor*delta,pullFactor*delta)
+						pullDir += direct*Vector2(pullFactor*delta,pullFactor*delta)
+						velocity += final
+						pullFactor = pullFactor*1.02
+						print(pullFactor)
+						
+					inStar = true
 				#var pull = a[i].get_parent().pull
 				#var size = a[i].get_parent().size
 				#var gravity = a[i].get_parent().gravity
@@ -60,12 +86,15 @@ func _physics_process(delta: float) -> void:
 				#print(c*Vector2(d-a[i].get_parent().size,d-a[i].get_parent().size))
 			if orbits:
 				if $FuelRegenTimer.is_stopped() and !refuelling:
-					print("start fuel timer")
+					#print("start fuel timer")
 					$FuelRegenTimer.start()
 			else:
+				if inStar:
+					if $StarPullTimer.is_stopped():
+						$StarPullTimer.start()
 				$FuelRegenTimer.stop()
 				refuelling = false
-				print("stop timer (no orbit)")
+				#print("stop timer (no orbit)")
 		else:
 			velocity = Vector2.ZERO
 
@@ -107,7 +136,7 @@ func _physics_process(delta: float) -> void:
 			$LineThrust.points[1] = -point*20
 			$FuelRegenTimer.stop()
 			refuelling = false
-			print("stop timer (thrust)")
+			#print("stop timer (thrust)")
 		else:
 			$LineThrust.points[1] = Vector2.ZERO
 
@@ -174,6 +203,7 @@ func simulate_gravity(input,pointPos):
 	var pull = input.get_parent().pull
 	var size = input.get_parent().size
 	var gravity = input.get_parent().gravity
+	var isStar = input.get_parent().star
 	var planetPos = input.global_position
 
 	var dist = pointPos.distance_to(planetPos)
@@ -192,4 +222,8 @@ func simulate_gravity(input,pointPos):
 
 func _on_fuel_regen_timer_timeout() -> void:
 	refuelling = true
-	print("hi")
+	#print("hi")
+
+
+func _on_star_pull_timer_timeout() -> void:
+	isBeingPulled = true
