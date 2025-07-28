@@ -41,7 +41,10 @@ func _physics_process(delta: float) -> void:
 					#print("not star")
 					$StarPullTimer.stop()
 					isBeingPulled = false
-					pullFactor = 1
+					if pullFactor > 1:
+						pullFactor = pullFactor / 1.01
+					if pullFactor < 1:
+						pullFactor = 1
 					#if pullDir != Vector2.ZERO:
 						#var cut = pullDir/1.2
 						#velocity -= cut
@@ -59,6 +62,15 @@ func _physics_process(delta: float) -> void:
 						pullDir += direct*Vector2(pullFactor*delta,pullFactor*delta)
 						velocity += final
 						pullFactor = pullFactor*1.02
+						if pullFactor > 200:
+							print(global_rotation)
+							#global_rotation = fmod(global_rotation+((global_position.angle_to(starPos))*0.2),TAU)
+							#global_rotation = lerp_angle(global_rotation,global_position.angle_to(starPos),minf(pullFactor/5000,1))
+							#global_rotation = global_position.angle_to(starPos)
+							var aerp = lerp_angle(global_rotation,global_position.angle_to(starPos),minf(pullFactor/5000,1))
+							var derp = velocity.normalized().lerp(direct,minf(pullFactor/100000,1))
+							#velocity.rotated(aerp)
+							velocity = derp * velocity.length()
 						print(pullFactor)
 						
 					inStar = true
@@ -91,7 +103,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				if inStar:
 					if $StarPullTimer.is_stopped():
-						$StarPullTimer.start()
+						if pullFactor > 1:
+							isBeingPulled = true
+						else:
+							$StarPullTimer.start()
 				$FuelRegenTimer.stop()
 				refuelling = false
 				#print("stop timer (no orbit)")
