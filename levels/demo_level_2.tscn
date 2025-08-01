@@ -29,3 +29,6 @@ position = Vector2(3000, 0)
 size = 100.0
 gravity = 0.5
 pull = 20.0
+[node name="Player" parent="." index="7"]
+position = Vector2(740, -383)
+startingVel = Vector2(0, 140)

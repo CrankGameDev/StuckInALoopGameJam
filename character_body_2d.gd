@@ -6,6 +6,8 @@ var closestPlanet : Node
 var x_vel : float = 0
 var y_vel : float = 0
 
+@export var startingVel : Vector2 = Vector2(0,110)
+
 var simLength : float = 0
 
 var refuelling : bool = false
@@ -21,7 +23,7 @@ var DEBUG : float = 0
 
 func _ready() -> void:
 	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
-	velocity.y = 110
+	velocity = startingVel
 
 
 func _physics_process(delta: float) -> void:

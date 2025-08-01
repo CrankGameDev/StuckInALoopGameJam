@@ -29,3 +29,6 @@ size = 100.0
 gravity = 0.5
 pull = 20.0
 star = true
+
+[node name="Player" parent="." index="7"]
+position = Vector2(160, 225)
