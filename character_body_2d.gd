@@ -149,6 +149,16 @@ func _physics_process(delta: float) -> void:
 		#print(point)
 		if Input.is_action_pressed("click") and fuel_component.amount > 0:
 			velocity += 50*point*delta
+			print("mag: ",velocity.length())
+			$GPUParticles2D.process_material.direction = Vector3(-point.x,-point.y,0)
+			$GPUParticles2D.emitting = true
+			
+			var ranje : float = 22
+			var midpoint : float = ranje/2
+			
+			$GPUParticles2D.process_material.initial_velocity_min = 86
+			$GPUParticles2D.process_material.initial_velocity_max = 108
+			
 			fuel_component.amount -= delta * 5.0
 			$LineThrust.points[1] = -point*20
 			$FuelRegenTimer.stop()
@@ -156,6 +166,7 @@ func _physics_process(delta: float) -> void:
 			#print("stop timer (thrust)")
 		else:
 			$LineThrust.points[1] = Vector2.ZERO
+			$GPUParticles2D.emitting = false
 
 		if refuelling:
 			fuel_component.amount += delta * 5.0
