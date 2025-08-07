@@ -58,8 +58,8 @@ curve = SubResource("Curve_3jdx8")
 particle_flag_disable_z = true
 direction = Vector3(1, 1, 0)
 spread = 5.0
-initial_velocity_min = 86.02
-initial_velocity_max = 107.53
+initial_velocity_min = 140.0
+initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 75.0
 damping_max = 75.0
@@ -97,6 +97,7 @@ width = 5.0
 default_color = Color(0, 1, 0, 1)
 
 [node name="LineThrust" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 30, 0)
 width = 5.0
 default_color = Color(1, 1, 0, 1)
@@ -143,6 +144,7 @@ one_shot = true
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_nv5df")
 lifetime = 0.5
+local_coords = true
 
 [connection signal="timeout" from="FuelRegenTimer" to="." method="_on_fuel_regen_timer_timeout"]
 [connection signal="timeout" from="StarPullTimer" to="." method="_on_star_pull_timer_timeout"]
