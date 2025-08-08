@@ -159,6 +159,7 @@ func _physics_process(delta: float) -> void:
 			$GPUParticles2D.process_material.gravity = -Vector3(velocity.x,velocity.y,0)*2
 			#$GPUParticles2D.process_material.initial_velocity_min = 86
 			#$GPUParticles2D.process_material.initial_velocity_max = 108
+			#$GPUParticles2D2.process_material.gravity = -Vector3(velocity.x,velocity.y,0)
 			
 			fuel_component.amount -= delta * 5.0
 			$LineThrust.points[1] = -point*20
